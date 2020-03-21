@@ -1,0 +1,17 @@
+{
+    "name": "Riders",
+    "alias": "riders",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\Riders\\Providers\\RidersServiceProvider",
+	"Modules\\Riders\\Providers\\RouteServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "start.php"
+    ],
+    "requires": []
+}

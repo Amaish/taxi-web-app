@@ -1,0 +1,15 @@
+{
+	"name": "codemobile/history",
+	"description": "",
+	"authors": [
+		{
+			"name": "Olushola Akinmolayan",
+			"email": "olushola@codemobile.com"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"Modules\\History\\": ""
+		}
+	}
+}

@@ -1,0 +1,58 @@
+.topbar .topbar-left {
+    background: #f5f5f5;
+}
+
+.side-menu {
+    background: #770D29;
+}
+
+#sidebar-menu ul li a i {
+    color: #f5f5f5;
+}
+
+.metismenu ul li {
+    color: white;
+}
+
+a {
+    color: #fb9a0d;
+}
+
+.btn-primary {
+    background-color: #fb9a0d;
+    border: 1px solid #fb9a0d;
+}
+
+.btn-danger {
+    background-color: #c52c3d;
+    border: 1px solid #c52c3d;
+}
+
+.page-item.active .page-link {
+    background-color: #fb9a0d;
+    border-color: #fb9a0d;
+}
+
+#sidebar-menu > ul > li > a.active {
+    color: #ffffff !important;
+    background-color: #f8a41e;
+}
+
+.menu-title {
+    padding: 12px 20px !important;
+    letter-spacing: 1px;
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+#sidebar-menu > ul > li > a {
+    color: #ffffff;
+    display: block;
+    padding: 13px 20px;
+    font-size: 13.3px;
+    position: relative;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+}

@@ -1,0 +1,25 @@
+{
+    "name": "codemobile/drivers",
+    "description": "",
+    "authors": [
+        {
+            "name": "CodeMobile",
+            "email": "olushola@codemobile.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Drivers\\Providers\\DriversServiceProvider"
+            ],
+            "aliases": {
+                
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Drivers\\": ""
+        }
+    }
+}

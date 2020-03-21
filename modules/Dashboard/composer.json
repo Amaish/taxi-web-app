@@ -1,0 +1,15 @@
+{
+	"name": "codemobile/dashboard",
+	"description": "",
+	"authors": [
+		{
+			"name": "Olushola Akinmolayan",
+			"email": "olushola@codemobile.com"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"Modules\\Dashboard\\": ""
+		}
+	}
+}

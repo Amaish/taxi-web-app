@@ -1,0 +1,25 @@
+{
+    "name": "codemobile/riders",
+    "description": "",
+    "authors": [
+        {
+            "name": "CodeMobile",
+            "email": "olushola@codemobile.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Riders\\Providers\\RidersServiceProvider"
+            ],
+            "aliases": {
+                
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Riders\\": ""
+        }
+    }
+}

@@ -1,0 +1,55 @@
+version: '3'
+services:
+  # The Application
+  app:
+    build:
+      context: ./
+      dockerfile: app.dockerfile
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    depends_on:
+      - database
+      - cache
+    links:
+      - database
+      - cache
+    environment:
+      - "DB_PORT=3306"
+      - "DB_HOST=database"
+
+  # The Web Server
+  web:
+    container_name: porte_web
+    build:
+      context: ./
+      dockerfile: web.dockerfile
+    working_dir: /var/www
+    depends_on:
+      - app
+    volumes:
+      - ./:/var/www
+    ports:
+      - 80:80
+
+  # The Database
+  database:
+    container_name: porte_db
+    image: mysql:5.7
+    volumes:
+      - dbdata:/var/lib/mysql
+    env_file:
+      - ./mysql.env
+    ports:
+        - "33063:3306"
+  cache:
+    container_name: porte_redis
+    image: redis
+    command: redis-server --requirepass "Nigeriasns1"
+    volumes:
+      - dbdata:/data/redis
+    ports:
+        - "6379:6379"
+
+volumes:
+  dbdata:

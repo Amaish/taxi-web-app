@@ -1,0 +1,25 @@
+{
+    "name": "codemobile/authentication",
+    "description": "",
+    "authors": [
+        {
+            "name": "Olushola Akinmolayan",
+            "email": "olushola@codemobile.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Authentication\\Providers\\AuthenticationServiceProvider"
+            ],
+            "aliases": {
+                
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Authentication\\": ""
+        }
+    }
+}

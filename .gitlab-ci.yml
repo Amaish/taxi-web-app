@@ -1,0 +1,92 @@
+stages:
+#  - build
+#  - test
+  - deploy
+
+# Variables
+variables:
+  MYSQL_DATABASE: porte_db
+  MYSQL_USER: porte_user
+  MYSQL_PASSWORD: P0rte$23256
+  MYSQL_ROOT_PASSWORD: Nigeriasns$1
+  DB_HOST: mysql
+  DB_CONNECTION: mysql
+
+#build:
+#  stage: build
+#  services:
+#     - mysql:5.7
+
+#  image: chilio/laravel-dusk-ci:stable
+#  script:
+#    - cp .env.testing .env
+#    - composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
+    # - npm install # if you need to install additional modules from your projects package.json
+    # - npm run dev # if you need to run dev scripts for example laravel mix
+#  cache:
+#    key: ${CI_BUILD_REF_NAME}
+#    paths:
+#      - vendor
+#      - node_modules
+#      - public
+#      - resources
+
+#test:
+#  stage: test
+#  cache:
+#    key: ${CI_BUILD_REF_NAME}
+#    paths:
+#      - vendor
+#      - node_modules
+
+#  services:
+#    - mysql:5.7
+
+#  image: chilio/laravel-dusk-ci:stable
+#  script:
+#    - cp .env.testing .env
+#    - cp phpunit.xml.ci phpunit.xml # if you are using custom config for your phpunit tests in CI
+#    - configure-laravel
+#    - start-nginx-ci-project
+#    - ./vendor/phpunit/phpunit/phpunit -v --coverage-text --colors --stderr
+    # - phpunit -v --coverage-text --colors --stderr # if you want to use preinstalled phpunit
+#    - php artisan dusk --colors --debug
+
+#  artifacts:
+#    paths:
+#      - ./storage/logs # for debugging
+#      - ./tests/Browser/screenshots
+#      - ./tests/Browser/console
+#    expire_in: 7 days
+#    when: always
+
+deploy:
+  image: ubuntu:17.10
+  stage: deploy
+  script:
+    # Update image before anything
+    - apt-get update -yqq
+    # Install ssh-agent if not already installed, it is required by Docker.
+    # (change apt-get to yum if you use a CentOS-based image)
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    # Run ssh-agent (inside the build environment)
+    - eval $(ssh-agent -s)
+    # For Docker builds disable host key checking. Be aware that by adding that
+    # you are suspectible to man-in-the-middle attacks.
+    # WARNING: Use this only with the Docker executor, if you use it with shell
+    # you will overwrite your user's SSH config.
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    # install git
+    - apt-get install git -y
+    # Add the SSH key stored in SSH_PRIVATE_KEY variable to the agent store
+    - echo "$PORTE_KEY"
+    - echo "$PORTE_KEY" > private.ssh_key
+    - chmod 600 private.ssh_key
+    - cat private.ssh_key
+    - ssh-add private.ssh_key
+    # Prepare deployment to production environment
+    - echo "Deploy to production server"
+    - ssh -v porte@165.227.135.143 -t "cd porte-web && git pull origin master"
+  when: on_success
+
